@@ -1,0 +1,26 @@
+# build
+target/
+build/
+dist/
+*.class
+
+# NetBeans
+nbproject/private/
+nbactions.xml
+nb-configuration.xml
+
+# IntelliJ / VS Code / Eclipse
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# fichiers de données générés au TP4
+*.txt
+!README*.txt
