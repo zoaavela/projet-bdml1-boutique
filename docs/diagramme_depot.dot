@@ -1,0 +1,25 @@
+digraph Depot {
+  graph [rankdir=TB, fontname="Helvetica", bgcolor="white", pad=0.3, nodesep=0.5, ranksep=0.45, label="Déroulé d'un dépôt (choix 5 du menu)", labelloc=t, fontsize=16];
+  node [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#FFF8E7", color="#1E2A2F"];
+  edge [fontname="Helvetica", fontsize=10, color="#1E2A2F"];
+
+  debut [label="Main : saisir le téléphone\nnew BonDepot(0, telephone, LocalDate.now())"];
+  n [label="Main : saisir le nombre d'articles déposés"];
+  ligne [label="Main : saisir le numéro et la quantité"];
+  connu [shape=diamond, style=filled, fillcolor="#EEF4F8", label="etab.rechercher(numero)\n== null ?"];
+  creer [label="saisirArticle(etab, numero, 0)\nl'article est créé avec 0 exemplaire"];
+  ajout [label="bon.ajouterLigne(numero, quantite)"];
+  encore [shape=diamond, style=filled, fillcolor="#EEF4F8", label="Reste-t-il des\narticles ? (i < n)"];
+  enreg [fillcolor="#F1F5EC", label="etab.ajouter(bon)\nnuméro = dernierNumeroBon + 1\ndate = LocalDate.now()\nbon rangé à la fin du tableau"];
+  stock [fillcolor="#F1F5EC", label="Pour chaque ligne :\netab.ajouter(numero, quantite)\nle stock augmente"];
+  fin [label="Main : afficher le bon"];
+
+  debut -> n -> ligne -> connu;
+  connu -> creer [xlabel="oui (inconnu)"];
+  connu -> ajout [xlabel="non"];
+  creer -> ajout;
+  ajout -> encore;
+  encore -> ligne [xlabel="oui", constraint=false];
+  encore -> enreg [xlabel="non"];
+  enreg -> stock -> fin;
+}

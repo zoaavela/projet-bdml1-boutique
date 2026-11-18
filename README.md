@@ -25,3 +25,5 @@ Saisir les numéros sans espaces et les prix avec un point (6.5).
 | `Main` | Menu console, saisies, chargement et sauvegarde |
 
 Le diagramme de classes est dans `docs/diagramme_classes.png` (source Graphviz : `docs/diagramme_classes.dot`).
+
+Diagrammes : `docs/diagramme_classes.png` et `docs/diagramme_depot.png`.
