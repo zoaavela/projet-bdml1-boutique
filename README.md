@@ -1,56 +1,27 @@
-# Boutique d'articles culturels d'occasion
+# BoutiqueOccasion
 
-TP Conception et Programmation Objet, EFREI, 2026/2027.
+Gestion de stock d'une boutique d'articles culturels d'occasion (TP3 et TP4, Conception et Programmation Objet, 2026/2027).
 
-Programme Java en console qui gère le stock d'une boutique de livres, manuels scolaires et magazines d'occasion, ainsi que les bons de dépôt des donateurs.
+## Ouvrir dans NetBeans
 
-## Contenu
+1. File > Open Project, choisir le dossier `BoutiqueOccasion` (projet Maven).
+2. Lancer le programme : clic droit sur `Main.java` > Run File.
+
+JDK 17 ou plus récent. Les fichiers `articles.txt` et `depots.txt` sont lus et écrits à la racine du projet.
+Garder une copie des deux fichiers d'origine pour remettre la démo à zéro.
+Saisir les numéros sans espaces et les prix avec un point (6.5).
+
+## Classes (paquetage `boutique`)
 
 | Classe | Rôle |
 | --- | --- |
-| `Article` | Classe abstraite : description, prix initial, nombre d'exemplaires |
-| `Livre` | ISBN 13 chiffres, nombre de pages, -50 % en avril |
-| `Manuel` | Livre avec matière et niveau scolaire |
-| `Magazine` | ISSN 8 chiffres, périodicité, date de publication, remise selon l'ancienneté |
-| `Periodicite` | Énumération : hebdomadaire, mensuel, trimestriel |
-| `LigneDepot` | Une référence (ISBN ou ISSN) et une quantité déposée |
-| `BonDepot` | Téléphone, date, lignes de dépôt, numéro attribué à l'enregistrement |
-| `Etablissement` | Articles triés par numéro, bons triés par date |
-| `Main` | Tests de la première partie |
+| `Article` | Classe mère : description, prix initial, nombre d'exemplaires |
+| `Livre` | ISBN, nombre de pages, réduction d'avril |
+| `Manuel` | Hérite de `Livre` : matière, niveau scolaire |
+| `Magazine` | ISSN, périodicité, date de publication, réductions selon l'ancienneté |
+| `LigneDepot` | Numéro d'article et nombre d'exemplaires déposés |
+| `BonDepot` | Bon numéroté et daté, tableau de lignes |
+| `Etablissement` | Tableaux d'articles et de bons, toutes les règles de gestion, fichiers |
+| `Main` | Menu console, saisies, chargement et sauvegarde |
 
-## Avancement
-
-- [x] TP3 : classes, gestion des articles, bons de dépôt
-- [ ] TP4 : méthodes `lister`, sauvegarde et chargement des fichiers texte, menu
-
-## Lancer le projet
-
-Prérequis : JDK 17 ou plus.
-
-Avec NetBeans : ouvrir le dossier (projet Maven), puis Run.
-
-En ligne de commande :
-
-```bash
-mvn compile exec:java
-```
-
-Sans Maven :
-
-```bash
-javac -d out src/main/java/fr/efrei/boutique/*.java
-java -cp out fr.efrei.boutique.Main
-```
-
-## Arborescence
-
-```
-src/main/java/fr/efrei/boutique/   sources Java
-pom.xml                            configuration Maven
-```
-
-## Équipe
-
-- Nom Prénom
-- Nom Prénom
-- Nom Prénom
+Le diagramme de classes est dans `docs/diagramme_classes.png` (source Graphviz : `docs/diagramme_classes.dot`).

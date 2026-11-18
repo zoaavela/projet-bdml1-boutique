@@ -1,0 +1,88 @@
+digraph UML {
+  graph [rankdir=BT, splines=ortho, nodesep=0.6, ranksep=0.8, fontname="Helvetica", bgcolor="white", pad=0.3];
+  node  [shape=plain, fontname="Helvetica", fontsize=10];
+  edge  [fontname="Helvetica", fontsize=9];
+
+  Article [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF8E7">
+<tr><td bgcolor="#E9D8A6"><b>Article</b></td></tr>
+<tr><td align="left" balign="left">- description : String<br/>- prixInitial : double<br/>- nbExemplaires : int</td></tr>
+<tr><td align="left" balign="left" sides="t">+ Article(description, prixInitial, nbExemplaires)<br/>+ getDescription() : String<br/>+ getPrixInitial() : double<br/>+ getNbExemplaires() : int<br/>+ getNumero() : String<br/>+ getType() : String<br/>+ placerApres(autre : Article) : boolean<br/>+ ajouter(quantite : int) : boolean<br/>+ retirer(quantite : int) : boolean<br/>+ calculerPrix(date : LocalDate) : double<br/>+ calculerPrix() : double<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  Livre [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF8E7">
+<tr><td bgcolor="#E9D8A6"><b>Livre</b></td></tr>
+<tr><td align="left" balign="left">- isbn : String<br/>- nbPages : int</td></tr>
+<tr><td align="left" balign="left" sides="t">+ Livre(..., isbn, nbPages)<br/>+ getNbPages() : int<br/>+ getNumero() : String<br/>+ getType() : String<br/>+ calculerPrix(date : LocalDate) : double<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  Manuel [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF8E7">
+<tr><td bgcolor="#E9D8A6"><b>Manuel</b></td></tr>
+<tr><td align="left" balign="left">- matiere : String<br/>- niveau : String</td></tr>
+<tr><td align="left" balign="left" sides="t">+ Manuel(..., matiere, niveau)<br/>+ getMatiere() : String<br/>+ getNiveau() : String<br/>+ getType() : String<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  Magazine [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF8E7">
+<tr><td bgcolor="#E9D8A6"><b>Magazine</b></td></tr>
+<tr><td align="left" balign="left">- issn : String<br/>- periodicite : String<br/>- datePublication : LocalDate</td></tr>
+<tr><td align="left" balign="left" sides="t">+ Magazine(..., issn, periodicite, datePublication)<br/>+ getPeriodicite() : String<br/>+ getDatePublication() : LocalDate<br/>+ getNumero() : String<br/>+ getType() : String<br/>+ calculerPrix(date : LocalDate) : double<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  LigneDepot [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#EEF4F8">
+<tr><td bgcolor="#B8D0E0"><b>LigneDepot</b></td></tr>
+<tr><td align="left" balign="left">- numero : String<br/>- nbExemplaires : int</td></tr>
+<tr><td align="left" balign="left" sides="t">+ LigneDepot(numero, nbExemplaires)<br/>+ getNumero() : String<br/>+ getNbExemplaires() : int<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  BonDepot [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#EEF4F8">
+<tr><td bgcolor="#B8D0E0"><b>BonDepot</b></td></tr>
+<tr><td align="left" balign="left">- NB_MAX_LIGNES : int = 20 {final}<br/>- numero : int<br/>- telephone : String<br/>- dateEmission : LocalDate<br/>- lignes : LigneDepot[ ]<br/>- nbLignes : int</td></tr>
+<tr><td align="left" balign="left" sides="t">+ BonDepot(numero, telephone, dateEmission)<br/>+ getNumero() / getTelephone() / getDateEmission()<br/>+ getNbArticles() : int<br/>+ getLigne(i : int) : LigneDepot<br/>+ setNumero(numero : int) : void<br/>+ setDateEmission(d : LocalDate) : void<br/>+ ajouterLigne(numero : String, nb : int) : boolean<br/>+ contient(numero : String) : boolean<br/>+ versFichier() : String<br/>+ toString() : String</td></tr>
+</table>>];
+
+  Etablissement [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#F1F5EC">
+<tr><td bgcolor="#C5D8B0"><b>Etablissement</b></td></tr>
+<tr><td align="left" balign="left">- NB_MAX_ARTICLES : int = 200 {final}<br/>- NB_MAX_BONS : int = 200 {final}<br/>- nom : String<br/>- articles : Article[ ]<br/>- nbArticles : int<br/>- bons : BonDepot[ ]<br/>- nbBons : int<br/>- dernierNumeroBon : int</td></tr>
+<tr><td align="left" balign="left" sides="t">+ Etablissement(nom)<br/>+ getNbArticles() / getNbBons() : int<br/>+ ajouter(desc, prix, nb, isbn, nbPages) : boolean<br/>+ ajouter(desc, prix, nb, isbn, nbPages, matiere, niveau) : boolean<br/>+ ajouter(desc, prix, nb, issn, periodicite, date) : boolean<br/>+ ajouter(numero : String, quantite : int) : boolean<br/>+ ajouter(bon : BonDepot) : boolean<br/>+ retirer(numero : String, quantite : int) : boolean<br/>+ rechercher(numero : String) : Article<br/>+ lister() : String<br/>+ lister(telephone : String) : String<br/>+ lister(numero, debut : LocalDate, fin : LocalDate) : String<br/>+ versFichierArticles(nomF) / depuisFichierArticles(nomF)<br/>+ versFichierDepots(nomF) / depuisFichierDepots(nomF)<br/>- inserer(a : Article) : boolean<br/>+ toString() : String</td></tr>
+</table>>];
+
+  Main [label=<
+<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#F4F4F4">
+<tr><td bgcolor="#D6D6D6"><b>Main</b></td></tr>
+<tr><td align="left" balign="left">~ sc : Scanner {static}</td></tr>
+<tr><td align="left" balign="left" sides="t">+ main(args : String[ ]) : void<br/>~ rechercher(etab), nouvelArticle(etab)<br/>~ saisirArticle(etab, numero, nb) : boolean<br/>~ nouveauDepot(etab), modifierStock(etab, augmenter)<br/>~ bonsParPeriode(etab), saisirDate(message) : LocalDate</td></tr>
+</table>>];
+
+  subgraph cluster_api {
+    label="Classes de l'API Java utilisées (annexe du TP)"; fontsize=10; style=dashed; color="#888888";
+    node [shape=box, style="rounded", fontsize=9];
+    LocalDate; Scanner; FileWriter; FileReader; BufferedReader;
+    Exceptions [label="IOException"];
+  }
+
+  // héritage : flèche à pointe triangulaire vide
+  Livre -> Article [arrowhead=empty];
+  Manuel -> Livre [arrowhead=empty];
+  Magazine -> Article [arrowhead=empty];
+
+  // compositions
+  Article -> Etablissement [arrowhead=diamond, xlabel="0..200  "];
+  BonDepot -> Etablissement [arrowhead=diamond, xlabel="0..200  "];
+  LigneDepot -> BonDepot [arrowhead=diamond, xlabel="0..20  "];
+
+  // dépendances
+  LigneDepot -> Article [style=dashed, arrowhead=vee, xlabel="référence par numéro"];
+  Etablissement -> Main [dir=back, style=dashed, arrowtail=vee, xlabel="utilise"];
+  Main -> Scanner [style=dashed, arrowhead=vee];
+  Etablissement -> FileWriter [style=dashed, arrowhead=vee];
+  Etablissement -> BufferedReader [style=dashed, arrowhead=vee];
+  BufferedReader -> FileReader [style=dashed, arrowhead=vee];
+  Magazine -> LocalDate [style=dashed, arrowhead=vee];
+  Main -> Exceptions [style=dashed, arrowhead=vee, xlabel="capture"];
+}
